@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>HelpX</title>
+
+    <!-- Подключаем AOS CSS для анимаций -->
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+    <style>
+        /* Общие стили */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(45deg, #74ebd5, #9face6, #94b0ea, #9e9aea);
+            background-size: 300% 300%;
+            animation: gradientAnimation 15s ease infinite;
+            color: #333;
+            line-height: 1.6;
+            font-size: 16px;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Главная секция */
+        header {
+            background: rgba(51, 51, 51, 0.8);
+            color: #fff;
+            padding: 120px 20px;
+            text-align: center;
+            position: relative;
+            backdrop-filter: blur(10px);
+            border-bottom: 3px solid #ff9900;
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            animation: fadeIn 2s ease-in;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            animation: fadeIn 3s ease-in;
+        }
+
+        .cta-btn {
+            background-color: #ff9900;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-size: 1.2rem;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .cta-btn:hover {
+            background-color: #e68a00;
+            transform: scale(1.1);
+        }
+
+        /* Секция проектов */
+        .projects {
+            padding: 80px 20px;
+            text-align: center;
+            background-color: #fff;
+            border-bottom: 3px solid #f4f4f4;
+        }
+
+        .projects h2 {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            color: #333;
+            text-transform: uppercase;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .project-cards {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .project-card {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 30%;
+            transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+            overflow: hidden;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            background-color: #f8f8f8;
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .project-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .project-card p {
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+
+        .project-link {
+            color: #ff9900;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .project-link:hover {
+            color: #e68a00;
+        }
+
+        /* Секция с работами */
+        .works {
+            padding: 80px 20px;
+            background-color: #f0f0f0;
+        }
+
+        .works h2 {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            color: #333;
+            text-transform: uppercase;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .work-cards {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .work-card {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 30%;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .work-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .work-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .work-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .work-card p {
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+
+        /* Секция достижений */
+        .achievements {
+            padding: 80px 20px;
+            text-align: center;
+            background-color: #fff;
+        }
+
+        .achievements h2 {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            color: #333;
+            text-transform: uppercase;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .achievement-cards {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .achievement-card {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 30%;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .achievement-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .achievement-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .achievement-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .achievement-card p {
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+
+        /* Секция о себе */
+        .about {
+            padding: 80px 20px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-bottom: 3px solid #ff9900;
+        }
+
+        .about h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .about p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Секция контактов */
+        footer {
+            background-color: #222;
+            color: #fff;
+            padding: 30px;
+            text-align: center;
+        }
+
+        footer h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        footer p {
+            font-size: 1.2rem;
+        }
+
+        footer a {
+            color: #ff9900;
+            transition: color 0.3s;
+        }
+
+        footer a:hover {
+            color: #e68a00;
+        }
+
+        /* Анимации */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Адаптивность */
+        @media screen and (max-width: 768px) {
+            .project-cards, .work-cards, .achievement-cards {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .project-card, .work-card, .achievement-card {
+                width: 80%;
+            }
+
+            .cta-btn {
+                font-size: 1rem;
+                padding: 10px 20px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            header h1 {
+                font-size: 2.5rem;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
+
+            .about p {
+                font-size: 1rem;
+            }
+
+            footer p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Главная секция -->
+    <header data-aos="fade-down">
+        <div class="intro">
+            <h1>Добро пожаловать </h1>
+            <a href="https://t.me/HelppX_bot" class="cta-btn">Перейти</a>
+        </div>
+    </header>
+
+    <!-- Секция с проектами -->
+    <section id="projects" class="projects">
+        <h2 data-aos="fade-up">Наши главные цели</h2>
+        <div class="project-cards">
+            <div class="project-card" data-aos="zoom-in">
+                <img src="https://sun9-38.userapi.com/impg/nfXGxn2le2o3-GbcBD8zokO2qYEC1ZoqnShcRQ/_yTjwVUp9pw.jpg?size=891x501&quality=96&sign=41d2b99945015ec446261cc60b9455ea&c_uniq_tag=4ounf0F0lmue6mgSNEcYTKqsns3ycbyOughtvKHnmnQ&type=album" alt="Проект 1">
+                <h3>Первая цель</h3>
+                <p>достижения всеобщего охвата услугами здравоохранения</p>
+            </div>
+            <div class="project-card" data-aos="zoom-in">
+                <img src="https://ortcom.kz/cache/imagine/main_page_full/uploads/posts/635/372/6a5/6353726a54e5b818141344.jpg">
+                <h3>Вторая цель</h3>
+                <p>Сделать понятные,короткие видеозаписи для экстренных ситуации</p>
+            </div>
+            <div class="project-card" data-aos="zoom-in">
+                <img src="https://assets.weforum.org/editor/4BlHLXIGYxXx3ENBb2yq6EGXR4Q_5TW1klRHXSuSO3s.png">
+                <h3>Третья цель</h3>
+                <p>сокращения смертности от непредвиденных обстоятельств</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секция с работами -->
+    <section id="works" class="works">
+        <h2 data-aos="fade-up">Наши будущие проекты </h2>
+        <div class="work-cards">
+            <div class="work-card" data-aos="fade-left">
+                <img src="https://sun9-32.userapi.com/impf/c637517/v637517741/1889a/utlTUAeeiAQ.jpg?size=604x604&quality=96&sign=205cca2bda0a5b20f533bd45849cb12c&type=album" alt="Работа 1">
+                <h3>Проект 1</h3>
+                <p>Сделать приложения для улучшения функциональных знаний</p>
+            </div>
+            <div class="work-card" data-aos="fade-left">
+                <img src="https://cdn-edge.kwork.ru/pics/t3/83/20724081-1652511383.jpg" alt="Работа 2">
+                <h3>Проект</h3>
+                <p>Chatbot для правильной первой помощи</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секция достижений -->
+    <section id="achievements" class="achievements">
+        <h2 data-aos="fade-up">наши будущие достижения</h2>
+        <div class="achievement-cards">
+            <div class="achievement-card" data-aos="zoom-in">
+                <img src="https://avatars.mds.yandex.net/i?id=61342721c145cac45ce7ba03ebeb42bcc90664ab-10107372-images-thumbs&n=13" alt="Достижение 1">
+                <h3>Достижение 1</h3>
+                <p>Достичь всеобщего охвата услугами здравоохранения до 90%</p>
+            </div>
+            <div class="achievement-card" data-aos="zoom-in">
+                <img src="https://avatars.mds.yandex.net/i?id=507d180088a5d3d6e53451fbe1ae0b80_l-5242761-images-thumbs&n=13" alt="Достижение 2">
+                <h3>Достижение 2</h3>
+                <p>Сократит смертность от непредвиденных обстоятельств на 70%</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- О себе -->
+    <section id="about" class="about">
+        <h2 data-aos="zoom-in">О нас</h2>
+        <p data-aos="fade-up">Мы-юные общественные деятели которые  стремятся изменить мир к лучшему</p>
+    </section>
+
+    <!-- Контакты -->
+    <footer>
+        <h2>Связаться с нами</h2>
+        <p>Электронная почта: <a href="beknurbazarbaiuly@gmail.com">beknurbazarbaiuly@gmail.com</a></p>
+        <p>&copy; 2024-2025 </p>
+    </footer>
+
+    <!-- Подключаем скрипт AOS -->
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            offset: 120,  // Начало анимации после 120px прокрутки
+            duration: 1000,  // Длительность анимации в миллисекундах
+            easing: 'ease-in-out',  // Тип easing
+            once: true,  // Анимация происходит только один раз
+        });
+    </script>
+</body>
+</html>
